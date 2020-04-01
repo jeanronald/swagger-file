@@ -76,11 +76,6 @@
               "schema": {
                 "$ref": "#/components/schemas/EmployeeRequest"
               }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/EmployeeRequest"
-              }
             }
           }
         },
@@ -224,11 +219,6 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmployeeRequest"
-              }
-            },
-            "application/xml": {
               "schema": {
                 "$ref": "#/components/schemas/EmployeeRequest"
               }
