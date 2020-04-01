@@ -1,0 +1,320 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "The Employee API for external callers",
+    "description": "This API enables operations on employee resources.",
+    "termsOfService": "http://somethingUrl.canada.ca/terms/",
+    "contact": {
+      "email": "mr.magoo@canada.ca"
+    },
+    "license": {
+      "name": "Not sure licence 1.0",
+      "url": "http://www.someLegalUrl.canada.ca"
+    },
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "/ebci/xxxx/jaxrsdemo",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/api/ctd131/v1/employees": {
+      "get": {
+        "operationId": "getList",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastRetrieved",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "addEmployee",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/ctd131/v1/employees/{employeeId}": {
+      "get": {
+        "operationId": "getEmployee",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateEmployee",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "doDelete",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "employeeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/ctd131/v1/employees/chunk": {
+      "get": {
+        "operationId": "getListChunk",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastRetrieved",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxRows",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {},
+              "application/xml": {},
+              "application/vnd.api+json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmployeeAttributes": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "department": {
+            "type": "string",
+            "enum": [
+              "DEPT_10",
+              "DEPT_15",
+              "DEPT_20",
+              "DEPT_38",
+              "DEPT_42",
+              "DEPT_51",
+              "DEPT_66",
+              "DEPT_84",
+              "NONE"
+            ]
+          },
+          "job": {
+            "type": "string",
+            "enum": [
+              "CLERK",
+              "MGR",
+              "SALES"
+            ]
+          },
+          "salary": {
+            "type": "number"
+          },
+          "commission": {
+            "type": "number"
+          },
+          "years": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "xml": {
+          "name": "attributes"
+        }
+      },
+      "EmployeeRequest": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EmployeeRequestWrapper"
+          }
+        },
+        "xml": {
+          "name": "request",
+          "namespace": "http://www.cra-arc.gc.ca/xmlns/xxxx/rest"
+        }
+      },
+      "EmployeeRequestWrapper": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "attributes": {
+            "$ref": "#/components/schemas/EmployeeAttributes"
+          }
+        },
+        "xml": {
+          "name": "data"
+        }
+      }
+    }
+  }
+}
